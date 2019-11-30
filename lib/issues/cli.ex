@@ -6,7 +6,7 @@ defmodule Issues.CLI do
     blablabla
     """
 
-    def run(argv) do 
+    def main(argv) do 
         #parse_args(argv)
         argv
         |> parse_args
