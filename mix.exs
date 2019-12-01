@@ -1,4 +1,3 @@
-
 defmodule Issues.MixProject do
   use Mix.Project
 
@@ -10,6 +9,10 @@ defmodule Issues.MixProject do
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       source_url: "https://github.com/eduardoraupp/elixir",
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test
+      ],
       deps: deps()
     ]
   end
@@ -29,13 +32,16 @@ defmodule Issues.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       {:httpoison, "~> 1.0.0"},
       {:poison, "~> 3.1"},
-      {:earmark, "~> 1.3"}
-      #{:hackney, github: "benoitc/hackney"}
+      {:earmark, "~> 1.3"},
+      {:stream_data, ">= 0.0.0"},
+      {:excoveralls, "~> 0.5.5", only: :test}
+      # {:hackney, github: "benoitc/hackney"}
     ]
   end
+
   defp escript_config do
-	    [
-	      main_module: Issues.CLI
-	    ]
-	  end
+    [
+      main_module: Issues.CLI
+    ]
+  end
 end
