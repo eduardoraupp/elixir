@@ -1,4 +1,4 @@
-defmodule Link1 do
+defmodule Monitor1 do
     import :timer, only: [sleep: 1]
 
     def sad_function do
@@ -7,7 +7,8 @@ defmodule Link1 do
     end
 
     def run do
-        spawn(Link1, :sad_function, [])
+        res = spawn_monitor(Monitor1, :sad_function, [])
+        IO.puts inspect res
         receive do
             msg ->
                 IO.puts "MESSAGE RECEIVED: #{inspect msg}"
@@ -15,6 +16,7 @@ defmodule Link1 do
                 IO.puts "Nothing happened as far as I am concerned"
         end
     end
+
 end
 
-Link1.run
+Monitor1.run
